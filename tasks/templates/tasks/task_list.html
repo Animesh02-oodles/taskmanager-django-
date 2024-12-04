@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
+</head>
+<body>
+    <h1>Task Manager</h1>
+
+    {% if user.is_authenticated %}
+    <!-- Logout Button -->
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+    
+    <h2>Welcome, {{ user.username }}</h2>
+    <br>
+    <a href="{% url 'add_task' %}" class="add-task">+ Add New Task</a>
+    <br><br><br>
+
+    {% if tasks %}
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.completed }}</td>
+                <td>
+                    <a href="{% url 'update_task' task.id %}">Edit</a> |
+                    <a href="{% url 'delete_task' task.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <br><br>
+    <p>No tasks available.</p>
+    {% endif %}
+
+    {% else %}
+    <h2>You are not logged in.</h2>
+    <a href="{% url 'login' %}" class="login-btn">Login</a>
+    <br>
+    <a href="{% url 'register' %}" class="register-btn">Register</a>
+    {% endif %}
+</body>
+</html>

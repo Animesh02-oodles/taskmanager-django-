@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}">
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}">
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="Male" {% if user.profile.gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if user.profile.gender == 'Female' %}selected{% endif %}>Female</option>
+        </select>
+
+        <label for="profession">Profession:</label>
+        <input type="text" id="profession" name="profession" value="{{ user.profile.profession }}">
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
