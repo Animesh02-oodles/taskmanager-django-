@@ -144,5 +144,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'  # Microsoft SMTP server
 EMAIL_PORT = 587  # TLS Port
 EMAIL_USE_TLS = True  # Use TLS for security
-EMAIL_HOST_USER = 'panimesh512@gmail.com'  # Your Microsoft email
-EMAIL_HOST_PASSWORD = 'eituukbxgtxpmdhf'  # Replace with the App Password
+EMAIL_HOST_USER = ''  # Your Microsoft email
+EMAIL_HOST_PASSWORD = ''  # Replace with the App Password
